@@ -4,8 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "./src/screens/LoginScreen";
 import HomeDrawer from "./src/components/HomeDrawer";
-import LoginScreen2 from "./src/screens/LoginScreen2";
 import ProfileScreen from "./src/screens/ProfileScreen";
+import ChatScreen from "./src/screens/ChatScreen";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -28,6 +28,11 @@ export default function App() {
         <Stack.Screen
           name="Profile"
           component={ProfileScreen}
+          options={navOptionHandler}
+        />
+        <Stack.Screen
+          name="Chat"
+          component={ChatScreen}
           options={navOptionHandler}
         />
       </Stack.Navigator>

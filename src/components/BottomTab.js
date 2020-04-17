@@ -5,7 +5,12 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 function BottomTab(props) {
   return (
     <View style={[styles.container, props.style]}>
-      <TouchableOpacity style={styles.btnWrapper1}>
+      <TouchableOpacity
+        style={styles.btnWrapper1}
+        onPress={() => {
+          props.navigation.navigate("Home");
+        }}
+      >
         <MaterialCommunityIconsIcon
           name="home-variant"
           style={styles.icon1}
@@ -13,7 +18,12 @@ function BottomTab(props) {
         <Text style={styles.btn1Text}>Home</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.btnWrapper2}>
+      <TouchableOpacity
+        style={styles.btnWrapper2}
+        onPress={() => {
+          props.navigation.navigate("Chat");
+        }}
+      >
         <MaterialCommunityIconsIcon
           name="message-processing"
           style={styles.icon2}
@@ -24,7 +34,7 @@ function BottomTab(props) {
       <TouchableOpacity
         style={styles.btnWrapper3}
         onPress={() => {
-          this.props.navigation.navigate("Profile");
+          props.navigation.navigate("Profile");
         }}
       >
         <MaterialCommunityIconsIcon

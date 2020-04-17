@@ -9,7 +9,7 @@ export default class HeaderIcon extends Component {
         <StatusBar backgroundColor="rgb(0, 0, 0)" translucent />
         <Toolbar
           style={{ container: { backgroundColor: "#21B68B" } }}
-          leftElement={this.props.icon}
+          // leftElement={this.props.icon}
           centerElement={this.props.title}
           onRightElementPress={(label) => {
             console.log(label);

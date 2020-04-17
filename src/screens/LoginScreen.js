@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
-    marginBottom: 200,
   },
   logo: {
     width: 200,

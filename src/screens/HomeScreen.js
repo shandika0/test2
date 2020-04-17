@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
 import HeaderIcon from "../components/HeaderIcon";
 import BottomTab from "../components/BottomTab";
 import Carousel from "../components/Carousel";
-import ButtonPeople from "../components/ButtonPeople";
 
 export default class HomeScreen extends Component {
   render() {
@@ -21,14 +20,14 @@ export default class HomeScreen extends Component {
 
         <View style={styles.container}>
           <Carousel />
-          {/* <ButtonPeople /> */}
         </View>
         <View style={styles.button}>
           <Text>Kategori</Text>
           <Button style={styles.button} title="Kost Pria"></Button>
+          <Button style={styles.button} title="Kost Wanita"></Button>
         </View>
 
-        <BottomTab />
+        <BottomTab {...this.props} />
       </>
     );
   }

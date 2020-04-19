@@ -9,11 +9,11 @@ export default class ChatScreen extends Component {
       <Fragment>
         <HeaderIcon
           title="Chat"
-          icon="menu"
-          onPress={() => {
-            this.props.navigation.openDrawer();
-          }}
-          {...this.props}
+          // icon="menu"
+          // onPress={() => {
+          //   this.props.navigation.openDrawer();
+          // }}
+          // {...this.props}
         />
         <View style={styles.container}>
           <Text>##### This Page Still Under Construction #####</Text>

@@ -8,8 +8,8 @@ export default class HeaderIcon extends Component {
       <View style={{ marginTop: 20 }}>
         <StatusBar backgroundColor="rgb(0, 0, 0)" translucent />
         <Toolbar
-          style={{ container: { backgroundColor: "#21B68B" } }}
-          // leftElement={this.props.icon}
+          style={{ container: { backgroundColor: "#4194fa" } }}
+          leftElement={this.props.icon}
           centerElement={this.props.title}
           onRightElementPress={(label) => {
             console.log(label);

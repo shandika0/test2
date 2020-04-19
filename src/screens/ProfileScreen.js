@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { View, StyleSheet, Text, Button, Image } from "react-native";
 import HeaderIcon from "../components/HeaderIcon";
 import BottomTab from "../components/BottomTab";
+import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default class ProfileScreen extends Component {
   render() {
@@ -9,18 +10,39 @@ export default class ProfileScreen extends Component {
       <Fragment>
         <HeaderIcon
           title="Profile"
-          icon="menu"
-          onPress={() => {
-            this.props.navigation.openDrawer();
-          }}
-          {...this.props}
+          // icon="menu"
+          // rightElement={{
+          //   menu: {
+          //     icon: "more-vert",
+          //     labels: ["item 1", "item 2"],
+          //   },
+          // }}
+          // onPress={() => {
+          //   this.props.navigation.openDrawer();
+          // }}
+          // {...this.props}
         />
         <View style={styles.container}>
           <Image
             source={require("../components/assetsImage/logo.jpg")}
-            style={{ width: 100, height: 100, borderRadius: 100 / 2 }}
+            style={{
+              marginTop: 30,
+              width: 100,
+              height: 100,
+              borderRadius: 100 / 2,
+            }}
           />
-          <Button title="LogOut">Log Out</Button>
+
+          <Text style={{ marginTop: 20 }}>Your Username</Text>
+          <Text style={{ marginTop: 20 }}>Email</Text>
+          <Text style={{ marginTop: 20 }}>Phone Number</Text>
+          <Text style={{ marginTop: 20 }}>History Booking</Text>
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Log Out"
+            onPress={() => this.props.navigation.navigate("Login")}
+          ></Button>
         </View>
         <BottomTab {...this.props} />
       </Fragment>
@@ -29,8 +51,29 @@ export default class ProfileScreen extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 1,
     flexDirection: "column",
     alignItems: "center",
+    marginTop: 20,
+  },
+  button: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 200,
+  },
+  info: {
+    flex: 1,
+    flexDirection: "row",
+    textAlign: "left",
+  },
+  icon1: {
+    flexDirection: "column-reverse",
+    backgroundColor: "transparent",
+    color: "black",
+    fontSize: 24,
+    opacity: 0.8,
+    width: 24,
+    height: 24,
   },
 });

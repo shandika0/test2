@@ -6,6 +6,11 @@ import LoginScreen from "./src/screens/LoginScreen";
 import HomeDrawer from "./src/components/HomeDrawer";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import ChatScreen from "./src/screens/ChatScreen";
+import SignUpScreen from "./src/screens/SIgnUpScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+import ListKostScreen from "./src/screens/ListKostScreen";
+import HomeContainer from "./src/screens/HomeContainer";
+import DetailKost from "./src/screens/DetailKost";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -21,8 +26,13 @@ export default function App() {
           options={navOptionHandler}
         />
         <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={navOptionHandler}
+        />
+        <Stack.Screen
           name="Home"
-          component={HomeDrawer}
+          component={HomeScreen}
           options={navOptionHandler}
         />
         <Stack.Screen
@@ -33,6 +43,16 @@ export default function App() {
         <Stack.Screen
           name="Chat"
           component={ChatScreen}
+          options={navOptionHandler}
+        />
+        <Stack.Screen
+          name="ListKost"
+          component={ListKostScreen}
+          options={navOptionHandler}
+        />
+        <Stack.Screen
+          name="DetailKost"
+          component={DetailKost}
           options={navOptionHandler}
         />
       </Stack.Navigator>

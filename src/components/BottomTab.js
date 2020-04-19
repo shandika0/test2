@@ -19,7 +19,7 @@ function BottomTab(props) {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.btnWrapper2}
+        style={styles.btnWrapper1}
         onPress={() => {
           props.navigation.navigate("Chat");
         }}
@@ -32,7 +32,7 @@ function BottomTab(props) {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.btnWrapper3}
+        style={styles.btnWrapper1}
         onPress={() => {
           props.navigation.navigate("Profile");
         }}
@@ -49,17 +49,11 @@ function BottomTab(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "rgba(33,182,139,100)",
+    backgroundColor: "transparent",
+    borderColor: "#123e75",
+    borderWidth: 1,
     flexDirection: "row",
     alignItems: "center",
-    elevation: 3,
-    shadowOffset: {
-      height: -2,
-      width: 0,
-    },
-    shadowColor: "#111",
-    shadowOpacity: 0.2,
-    shadowRadius: 1.2,
   },
   btnWrapper1: {
     flex: 1,
@@ -72,7 +66,7 @@ const styles = StyleSheet.create({
   },
   icon1: {
     backgroundColor: "transparent",
-    color: "#FFFFFF",
+    color: "#123e75",
     fontSize: 24,
     opacity: 0.8,
     width: 24,
@@ -81,24 +75,16 @@ const styles = StyleSheet.create({
   btn1Text: {
     width: 45,
     height: 14,
-    color: "#FFFFFF",
+    color: "#123e75",
     alignSelf: "center",
+    fontSize: 12,
     opacity: 0.8,
     textAlign: "center",
   },
-  btnWrapper2: {
-    flex: 1,
-    alignItems: "center",
-    paddingTop: 8,
-    paddingBottom: 6,
-    minWidth: 80,
-    maxWidth: 168,
-    paddingHorizontal: 12,
-  },
   icon2: {
     backgroundColor: "transparent",
-    color: "#FFFFFF",
-    fontSize: 24,
+    color: "#123e75",
+    fontSize: 22,
     opacity: 0.8,
     width: 24,
     height: 24,
@@ -106,28 +92,23 @@ const styles = StyleSheet.create({
   btn2Text: {
     width: 39,
     height: 14,
-    color: "#FFFFFF",
+    color: "#123e75",
+    fontSize: 12,
     opacity: 0.8,
     textAlign: "center",
   },
-  btnWrapper3: {
-    flex: 1,
-    alignItems: "center",
-    paddingTop: 8,
-    paddingBottom: 6,
-    minWidth: 80,
-    maxWidth: 168,
-    paddingHorizontal: 12,
-  },
   icon3: {
     backgroundColor: "transparent",
-    color: "#FFFFFF",
-    fontSize: 24,
+    color: "#123e75",
+    fontSize: 25,
     opacity: 0.8,
+    width: 24,
+    height: 24,
   },
   btn3Text: {
-    color: "#FFFFFF",
+    color: "#123e75",
     opacity: 0.8,
+    fontSize: 12,
   },
 });
 

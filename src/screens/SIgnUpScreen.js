@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, Button, Image } from "react-native";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 
-export default class LoginScreen extends Component {
+export default class SignUpScreen extends Component {
   state = {
     username: "",
+    email: "",
     password: "",
+    noHp: "",
   };
   render() {
     return (
@@ -17,9 +19,16 @@ export default class LoginScreen extends Component {
         <TextInput
           style={styles.inputBox1}
           underlineColorAndroid="rgba(0,0,0,0)"
-          placeholder="Username.."
+          placeholder="Username"
           placeholderTextColor="grey"
           onChangeText={(username) => this.setState({ username: username })}
+        />
+        <TextInput
+          style={styles.inputBox1}
+          underlineColorAndroid="rgba(0,0,0,0)"
+          placeholder="Email"
+          placeholderTextColor="grey"
+          onChangeText={(email) => this.setState({ email: email })}
         />
         <TextInput
           style={styles.inputBox1}
@@ -29,17 +38,24 @@ export default class LoginScreen extends Component {
           secureTextEntry={true}
           onChangeText={(password) => this.setState({ password: password })}
         />
+        <TextInput
+          style={styles.inputBox1}
+          underlineColorAndroid="rgba(0,0,0,0)"
+          placeholder="Phone Number"
+          placeholderTextColor="grey"
+          onChangeText={(noHp) => this.setState({ noHp: noHp })}
+        />
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.props.navigation.navigate("Home", this.state)}
         >
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
-        <Text style={styles.signup}>Don't have an account yet?</Text>
+
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("SignUp", this.state)}
+          onPress={() => this.props.navigation.navigate("Login", this.state)}
         >
-          <Text style={styles.signUpButton}>Sign Up </Text>
+          <Text style={styles.signUpButton}>Back</Text>
         </TouchableOpacity>
         {/* <Button
           title="Login"

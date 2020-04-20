@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   logo: {
-    width: 300,
+    width: 350,
     height: 100,
     resizeMode: "stretch",
   },

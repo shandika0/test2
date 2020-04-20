@@ -42,7 +42,7 @@ export default class ProfileScreen extends Component {
           <Button
             title="Log Out"
             onPress={() => this.props.navigation.navigate("Login")}
-          ></Button>
+          />
         </View>
         <BottomTab {...this.props} />
       </Fragment>

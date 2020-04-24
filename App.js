@@ -1,18 +1,20 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "./src/screens/LoginScreen";
-import HomeDrawer from "./src/components/HomeDrawer";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import ChatScreen from "./src/screens/ChatScreen";
 import SignUpScreen from "./src/screens/SIgnUpScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 import ListKostScreen from "./src/screens/ListKostScreen";
-import HomeContainer from "./src/screens/HomeContainer";
 import DetailKost from "./src/screens/DetailKost";
+import BookingScreen from "./src/screens/BookingScreen";
+
 
 export default function App() {
+
+// RN < 0.52
+console.disableYellowBox = true
   const Stack = createStackNavigator();
   const navOptionHandler = () => ({
     headerShown: false,
@@ -53,6 +55,11 @@ export default function App() {
         <Stack.Screen
           name="DetailKost"
           component={DetailKost}
+          options={navOptionHandler}
+        />
+        <Stack.Screen
+          name="BookKost"
+          component={BookingScreen}
           options={navOptionHandler}
         />
       </Stack.Navigator>

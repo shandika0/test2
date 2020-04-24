@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { View, StyleSheet, Text, Button, Image } from "react-native";
 import HeaderIcon from "../components/HeaderIcon";
 import BottomTab from "../components/BottomTab";
-import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default class ProfileScreen extends Component {
   render() {

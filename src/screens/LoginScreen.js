@@ -1,13 +1,29 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, AsyncStorage } from "react-native";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import { _login } from "../reduxs/action/Auth";
+import { connect } from "react-redux";
 
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
   state = {
     username: "",
     password: "",
   };
+
+  login = () => {
+    const { password, username } = this.state;
+    const navigate = this.props.navigation;
+    this.props._login({ username, password }, navigate);
+
+    console.log(this.state);
+  };
+
   render() {
+    const isLogined = AsyncStorage.getItem("isLogined");
+    // console.log(isLogined);
+    if (isLogined == true) {
+      this.props.navigation.navigate("Home");
+    }
     return (
       <View style={styles.container}>
         <Image
@@ -19,7 +35,7 @@ export default class LoginScreen extends Component {
           underlineColorAndroid="rgba(0,0,0,0)"
           placeholder="Username.."
           placeholderTextColor="grey"
-          onChangeText={(username) => this.setState({ username: username })}
+          onChangeText={(username) => this.setState({ username })}
         />
         <TextInput
           style={styles.inputBox1}
@@ -27,12 +43,9 @@ export default class LoginScreen extends Component {
           placeholder="Password.."
           placeholderTextColor="grey"
           secureTextEntry={true}
-          onChangeText={(password) => this.setState({ password: password })}
+          onChangeText={(password) => this.setState({ password })}
         />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate("Home", this.state)}
-        >
+        <TouchableOpacity style={styles.button} onPress={this.login}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.signup}>Don't have an account yet?</Text>
@@ -41,10 +54,6 @@ export default class LoginScreen extends Component {
         >
           <Text style={styles.signUpButton}>Sign Up </Text>
         </TouchableOpacity>
-        {/* <Button
-          title="Login"
-          // onPress={() => this.props.navigation.navigate("Home", this.state)}
-        /> */}
       </View>
     );
   }
@@ -103,3 +112,10 @@ const styles = StyleSheet.create({
     resizeMode: "stretch",
   },
 });
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, { _login })(LoginScreen);

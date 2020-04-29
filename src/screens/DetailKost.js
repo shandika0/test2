@@ -7,6 +7,7 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 
 export default class DetailKost extends Component {
   render() {
+    const{id,name,kontakPemilik,address,description,luasKamar,imageUrl,pemilik,price,category,fasilitas} = this.props.route.params
     return (
       <>
         <HeaderIcon
@@ -17,12 +18,12 @@ export default class DetailKost extends Component {
         <ScrollView>
           <Image
             style={{ width: "100%", height: 250, resizeMode: "stretch" }}
-            source={require("../components/assetsImage/kos4.jpg")}
+            source={{uri:imageUrl}}
           ></Image>
           <View style={{ backgroundColor: 'white', height: 120 }}>
             <View style={{ flexDirection: 'row', marginTop: 10 }}>
               <Text style={{ color: '#4A92E6', marginLeft: 20, fontSize: 19 }}>
-                Perempuan
+                {category}
             </Text>
               <Text style={{ color: 'gray', marginLeft: 10 }}>
                 {'\u2022'}
@@ -30,15 +31,21 @@ export default class DetailKost extends Component {
               <Text style={{ color: '#ec7e2f', marginLeft: 10, fontSize: 18 }}>
                 20 Kamar
             </Text>
+            <Text style={{ color: 'gray', marginLeft: 10 }}>
+                {'\u2022'}
+              </Text>
+            <Text style={{ color: '#ec7e2f', marginLeft: 10, fontSize: 18 }}>
+                {price}
+            </Text>
             </View>
             <View style={{ flexDirection: 'row', marginTop: 5 }}>
               <Text style={{ color: 'black', marginLeft: 20, fontSize: 21 }}>
-                Kos Kakek Legend
+                {name}
     </Text>
             </View>
             <View style={{ flexDirection: 'row', marginTop: 5 }}>
               <Text style={{ color: 'black', marginLeft: 20, fontSize: 21 }}>
-                Jakarta
+                {address}
     </Text>
             </View>
           </View>
@@ -77,22 +84,20 @@ export default class DetailKost extends Component {
               <View style={{ flexDirection: 'row', marginTop: 10, marginLeft: 20 }}>
 
                 <Text style={{ color: 'black', marginLeft: 10, fontSize: 18 }}>
-                  5 x 5 m
+                  {luasKamar} m
             </Text>
               </View>
             </View>
 
             {/* FASILITAS KOST */}
             <View style={{ flexDirection: 'row', marginHorizontal: 20, alignItems: 'center' }}>
-              <Text style={{ color: 'black', marginTop: 20, fontSize: 20, marginRight: 50, }}>
+              <Text style={{ color: '#0baa56', marginTop: 20, fontSize: 20, marginRight: 50, }}>
                 Fasilitas kost dan kamar
-            </Text>
-              <Text style={{ color: '#0baa56', marginTop: 20, fontSize: 16, marginLeft: 20, }}>
-                Lihat Semua
             </Text>
             </View>
             <View style={styles.button}>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row', marginTop: 10 }}>
+            <Text>{fasilitas}</Text>
+              {/* <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row', marginTop: 10 }}>
                 <TouchableOpacity
                   style={styles.button2}
                 // onPress={() =>
@@ -129,7 +134,7 @@ export default class DetailKost extends Component {
                   ></MaterialCommunityIconsIcon>
                   <Text style={styles.buttonText}>Kasur</Text>
                 </TouchableOpacity>
-              </ScrollView>
+              </ScrollView> */}
             </View>
 
           </View>
@@ -142,7 +147,7 @@ export default class DetailKost extends Component {
                 </Text>
               <View style={{ flexDirection: 'row', marginTop: 10, marginHorizontal: 20, flexWrap: 'wrap' }}>
                 <Text>
-                  Deskripsinya
+                  {description}
                 </Text>
               </View>
             </View>
@@ -172,10 +177,10 @@ export default class DetailKost extends Component {
                     Pemilik Kost
                       </Text>
                   <Text style={{ color: 'black', fontSize: 18, flex: 1 }}>
-                    Kakek Legend
+                    {pemilik}
                       </Text>
                   <Text style={{ color: 'black', fontSize: 18, flex: 1 }}>
-                    086969696969
+                    {kontakPemilik}
                       </Text>
                 </View>
               </View>
@@ -183,7 +188,6 @@ export default class DetailKost extends Component {
           </View>
 
           <View>
-            <Maps/>
             <View style={styles.button}>
               <Button
                 title="book"
@@ -200,7 +204,13 @@ export default class DetailKost extends Component {
             <Button title="DETAIL KOS" color="#242dab"/>
           </View>
           <View style={styles.buttonContainer}>
-            <Button title="MAP" />
+            <Button title="MAP" 
+            onPress={() =>
+              this.props.navigation.navigate("Map", {
+                name: {name}
+              })
+            }
+            />
           </View>
         </View>
       </>

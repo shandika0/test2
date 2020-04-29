@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+  Image,
+  AsyncStorage,
+  Animated,
+} from "react-native";
 import HeaderIcon from "../components/HeaderIcon";
 import BottomTab from "../components/BottomTab";
 import Carousel from "../components/Carousel";
@@ -8,21 +17,24 @@ import { TextInput } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import Home from "../components/Home";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import { _loadSession } from "../reduxs/action/Auth";
+import { connect } from "react-redux";
+import { Card, Col } from "native-base";
 
-const { width } = Dimensions.get('window')
+const { width } = Dimensions.get("window");
 
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
   render() {
     return (
       <>
         <HeaderIcon
-          title="Ternak Kost"
+          title="Ternak Kos"
           image={logo}
-        // icon="menu"
-        // onPress={() => {
-        //   this.props.navigation.openDrawer();
-        // }}
-        // {...this.props}
+          // icon="menu"
+          // onPress={() => {
+          //   this.props.navigation.openDrawer();
+          // }}
+          // {...this.props}
         >
           <TextInput
             underlineColorAndroid="transparent"
@@ -30,112 +42,202 @@ export default class HomeScreen extends Component {
             placeholderTextColor="grey"
             style={{
               flex: 1,
-              fontWeight: '700',
-              backgroundColor: 'white',
+              fontWeight: "700",
+              backgroundColor: "white",
             }}
           />
         </HeaderIcon>
-        <ScrollView
-          scrollEventThrottle={16}
-        >
-          <Text style={{
-            fontSize: 24,
-            fontWeight: '700',
-            paddingHorizontal: 15,
-            marginTop: 10,
-          }}>
-            What kind of room you needed?
+        <ScrollView scrollEventThrottle={16}>
+          <Text
+            style={{
+              fontSize: 24,
+              fontWeight: "700",
+              paddingHorizontal: 15,
+              marginTop: 10,
+            }}
+          >
+            Silahkan pilih kategori kos
           </Text>
           <View style={styles.button}>
             <TouchableOpacity
               style={styles.button2}
               onPress={() =>
-                this.props.navigation.navigate("ListKost", this.state)
+                this.props.navigation.navigate("ListKost", {
+                  category: "putra",
+                })
               }
             >
               <MaterialCommunityIconsIcon
                 name="human-male"
                 style={styles.icon1}
               ></MaterialCommunityIconsIcon>
-              <Text style={styles.buttonText}>Kost Putra</Text>
+              <Text style={styles.buttonText}>Kos Putra</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.props.navigation.navigate("ListKost", this.state)
+                this.props.navigation.navigate("ListKost", {
+                  category: "putri",
+                })
               }
               style={styles.button2}
-            > 
+            >
               <MaterialCommunityIconsIcon
                 name="human-female"
                 style={styles.icon1}
               ></MaterialCommunityIconsIcon>
-              <Text style={styles.buttonText}>Kost Putri</Text>
+              <Text style={styles.buttonText}>Kos Putri</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button2}
               onPress={() =>
-                this.props.navigation.navigate("ListKost", this.state)
+                this.props.navigation.navigate("ListKost", {
+                  category: "campur",
+                })
               }
             >
               <MaterialCommunityIconsIcon
                 name="human-male-female"
                 style={styles.icon2}
               ></MaterialCommunityIconsIcon>
-              <Text style={styles.buttonText}>Campur</Text>
+              <Text style={styles.buttonText}>Kos Campur</Text>
             </TouchableOpacity>
           </View>
-          <Text style={{
-            fontSize: 24,
-            fontWeight: '700',
-            paddingHorizontal: 15,
-            marginTop: 20,
-          }}
-          >Introducing Ternak Kost</Text>
-          <Text style={{
-            fontSize: 12,
-            fontWeight: '700',
-            paddingHorizontal: 15,
-            marginTop: 2,
-          }}
-          >A new selection of boarding house verified for quality and comfort</Text>
+          <Text
+            style={{
+              fontSize: 24,
+              fontWeight: "700",
+              paddingHorizontal: 15,
+              marginTop: 20,
+            }}
+          >
+            Apa sih Ternak Kos?
+          </Text>
+          <Text
+            style={{
+              fontSize: 14,
+              paddingHorizontal: 15,
+              marginTop: 2,
+            }}
+          >
+            Ternak Kos merupakan pilihan terbaru dalam mencari tempat kost yang
+            nyaman dan berkualitas !
+          </Text>
           <View style={styles.container}>
-
             <Carousel />
           </View>
-          <View style={styles.category}>
-            {/* <Text style={styles.categoryText}>Pilih Kategory</Text> */}
-          </View>
-          <View style={{ marginTop: 10 }}>
-            <Text style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 20 }}>
-              Boarding homes around Jakarta
-                            </Text>
-            <View style={{ paddingHorizontal: 20, marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-              <Home width={width}
-                name="The Cozy Place"
-                type="PRIVATE ROOM - 2 BEDS"
-                price={82}
-                rating={4}
-              />
-              <Home width={width}
-                name="The Cozy Place"
-                type="PRIVATE ROOM - 2 BEDS"
-                price={82}
-                rating={4}
-              />
-              <Home width={width}
-                name="The Cozy Place"
-                type="PRIVATE ROOM - 2 BEDS"
-                price={82}
-                rating={4}
-              />
-              <Home width={width}
-                name="The Cozy Place"
-                type="PRIVATE ROOM - 2 BEDS"
-                price={82}
-                rating={4}
-              />
+          <View>
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+              }}
+            ></View>
+            <Text style={styles.why}>Mengapa Ternak Kos ?</Text>
 
+            <View
+              style={{
+                flexDirection: "row",
+                height: 100,
+                padding: 20,
+              }}
+            >
+              <Image
+                style={styles.review}
+                source={require("../review/cari-mudah.bd90ceed.png")}
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  paddingHorizontal: 15,
+                  textAlign: "center",
+                }}
+              >
+                Pencarian Mudah
+              </Text>
             </View>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "500",
+                paddingHorizontal: 15,
+                textAlign: "center",
+                flexDirection: "column",
+              }}
+            >
+              Tinggal pilih kos sesuai kategori yang tersedia, Sekarang !
+            </Text>
+
+            <View
+              style={{
+                flexDirection: "row",
+                height: 100,
+                padding: 20,
+                marginTop: 10,
+              }}
+            >
+              <Image
+                style={styles.review}
+                source={require("../review/terpercaya.941f7245.png")}
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  paddingHorizontal: 15,
+                  textAlign: "center",
+                  marginTop: 10,
+                }}
+              >
+                Terpercaya
+              </Text>
+            </View>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "500",
+                paddingHorizontal: 15,
+                textAlign: "center",
+              }}
+            >
+              Kos yang telah terverifikasi, dilengkapi dengan peta lokasi, serta
+              foto galeri !
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                height: 100,
+                padding: 20,
+                marginTop: 10,
+              }}
+            >
+              <Image
+                style={styles.review}
+                source={require("../review/booking.de0d93d2.png")}
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  paddingHorizontal: 15,
+                  textAlign: "center",
+                  marginTop: 10,
+                }}
+              >
+                Bisa Booking
+              </Text>
+            </View>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "500",
+                paddingHorizontal: 15,
+                textAlign: "center",
+              }}
+            >
+              Langsung bisa booking yang sesuai keinginanmu, kapan saja !
+            </Text>
           </View>
         </ScrollView>
         <BottomTab {...this.props} />
@@ -143,6 +245,13 @@ export default class HomeScreen extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, { _loadSession })(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -182,7 +291,8 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "black",
     textAlign: "center",
-    fontSize: 10,
+    fontSize: 12,
+    fontWeight: "bold",
   },
   icon1: {
     backgroundColor: "transparent",
@@ -201,5 +311,20 @@ const styles = StyleSheet.create({
     width: 26,
     height: 30,
     marginHorizontal: 10,
+  },
+  review: {
+    width: 100,
+    height: 50,
+    resizeMode: "contain",
+
+    flexDirection: "column",
+  },
+  why: {
+    justifyContent: "center",
+    textAlign: "center",
+    alignContent: "center",
+    fontSize: 20,
+    marginBottom: 10,
+    fontWeight: "bold",
   },
 });

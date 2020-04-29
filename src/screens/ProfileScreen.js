@@ -7,9 +7,18 @@ import BottomTab from "../components/BottomTab";
 import { Title } from "react-native-paper";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Card, CardItem } from "native-base";
+import { connect } from "react-redux";
+import { _logout } from "../reduxs/action/Auth";
 
-export default class ProfileScreen extends Component {
+class ProfileScreen extends Component {
+  logout = () => {
+    const navigate = this.props.navigation;
+    this.props._logout(navigate);
+  };
   render() {
+    const { user } = this.props;
+    console.log(user);
+
     return (
       <Fragment>
         <HeaderIcon
@@ -45,7 +54,7 @@ export default class ProfileScreen extends Component {
               }}
             >
               <MaterialCommunityIconsIcon name="account" style={styles.icon2} />
-              &nbsp; Your Username
+              &nbsp; {user.username}
             </Text>
           </Card>
           <Card style={{ width: "85%", elevation: 0 }}>
@@ -58,7 +67,7 @@ export default class ProfileScreen extends Component {
               }}
             >
               <MaterialCommunityIconsIcon name="email" style={styles.icon2} />
-              &nbsp; Your Email
+              &nbsp; {user.email}
             </Text>
           </Card>
           <Card style={{ width: "85%", elevation: 0 }}>
@@ -74,7 +83,7 @@ export default class ProfileScreen extends Component {
                 name="cellphone"
                 style={styles.icon2}
               />
-              &nbsp; Your Phone Number
+              &nbsp; {user.numberHp}
             </Text>
           </Card>
           <Card style={{ width: "85%", height: "30%", elevation: 0 }}>
@@ -94,12 +103,7 @@ export default class ProfileScreen extends Component {
             </Text>
           </Card>
           <Card style={{ width: "85%" }}>
-            <CardItem
-              button
-              onPress={() =>
-                this.props.navigation.navigate("Login", this.state)
-              }
-            >
+            <CardItem button onPress={this.logout}>
               <Text style={{ fontSize: 17, color: "#061e8c" }}>
                 <MaterialCommunityIconsIcon
                   name="logout"
@@ -116,6 +120,12 @@ export default class ProfileScreen extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user,
+  };
+};
+export default connect(mapStateToProps, { _logout })(ProfileScreen);
 const styles = StyleSheet.create({
   container: {
     flex: 1,

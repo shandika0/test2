@@ -9,6 +9,9 @@ import HomeScreen from "./src/screens/HomeScreen";
 import ListKostScreen from "./src/screens/ListKostScreen";
 import DetailKost from "./src/screens/DetailKost";
 import BookingScreen from "./src/screens/BookingScreen";
+import Maps from "./src/components/Maps";
+import store from "./src/reduxs/store/";
+import { Provider } from "react-redux";
 
 
 export default function App() {
@@ -20,6 +23,7 @@ console.disableYellowBox = true
     headerShown: false,
   });
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
@@ -62,8 +66,14 @@ console.disableYellowBox = true
           component={BookingScreen}
           options={navOptionHandler}
         />
+        <Stack.Screen
+          name="Map"
+          component={Maps}
+          options={navOptionHandler}
+        />
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 

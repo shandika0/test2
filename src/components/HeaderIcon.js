@@ -6,9 +6,11 @@ export default class HeaderIcon extends Component {
   render() {
     return (
       <View style={{ marginTop: 20 }}>
-        <StatusBar backgroundColor="rgb(0, 0, 0)" translucent />
+        <StatusBar backgroundColor="#242dab" translucent />
         <Toolbar
-          style={{ container: { backgroundColor: "#4194fa" } }}
+          style={{
+            container: { backgroundColor: "#242dab" },
+          }}
           leftElement={this.props.icon}
           centerElement={this.props.title}
           onRightElementPress={(label) => {

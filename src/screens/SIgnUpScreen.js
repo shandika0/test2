@@ -1,13 +1,27 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import { _signup } from "../reduxs/action/SignUp";
+import { connect } from "react-redux";
 
-export default class SignUpScreen extends Component {
+class SignUpScreen extends Component {
   state = {
     username: "",
     email: "",
     password: "",
-    noHp: "",
+    numberHp: "",
+    gender: "",
+    role: ["find"],
+  };
+
+  signup = () => {
+    const { username, password, email, numberHp, gender, role } = this.state;
+    const navigate = this.props.navigation;
+    this.props._signup(
+      { username, password, email, numberHp, gender, role },
+      navigate
+    );
+    console.log(this.state);
   };
   render() {
     return (
@@ -33,7 +47,7 @@ export default class SignUpScreen extends Component {
         <TextInput
           style={styles.inputBox1}
           underlineColorAndroid="rgba(0,0,0,0)"
-          placeholder="Password.."
+          placeholder="Password"
           placeholderTextColor="grey"
           secureTextEntry={true}
           onChangeText={(password) => this.setState({ password: password })}
@@ -43,17 +57,22 @@ export default class SignUpScreen extends Component {
           underlineColorAndroid="rgba(0,0,0,0)"
           placeholder="Phone Number"
           placeholderTextColor="grey"
-          onChangeText={(noHp) => this.setState({ noHp: noHp })}
+          onChangeText={(numberHp) => this.setState({ numberHp: numberHp })}
         />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate("Home", this.state)}
-        >
+        <TextInput
+          style={styles.inputBox1}
+          underlineColorAndroid="rgba(0,0,0,0)"
+          placeholder="Gender"
+          placeholderTextColor="grey"
+          onChangeText={(gender) => this.setState({ gender: gender })}
+        />
+
+        <TouchableOpacity style={styles.button} onPress={this.signup}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("Login", this.state)}
+          onPress={() => this.props.navigation.navigate("Login")}
         >
           <Text style={styles.signUpButton}>Back</Text>
         </TouchableOpacity>
@@ -65,6 +84,11 @@ export default class SignUpScreen extends Component {
     );
   }
 }
+const mapStateToProps = () => {
+  return {};
+};
+
+export default connect(mapStateToProps, { _signup })(SignUpScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -114,8 +138,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   logo: {
-    width: 300,
+    width: 350,
     height: 100,
-    resizeMode: "stretch",
+    resizeMode: "contain",
   },
 });

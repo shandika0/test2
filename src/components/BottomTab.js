@@ -28,7 +28,7 @@ function BottomTab(props) {
           name="message-processing"
           style={styles.icon2}
         ></MaterialCommunityIconsIcon>
-        <Text style={styles.btn2Text}>Chat</Text>
+        <Text style={styles.btn1Text}>Chat</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -41,7 +41,7 @@ function BottomTab(props) {
           name="account"
           style={styles.icon3}
         ></MaterialCommunityIconsIcon>
-        <Text style={styles.btn3Text}>Profile</Text>
+        <Text style={styles.btn1Text}>Profile</Text>
       </TouchableOpacity>
     </View>
   );
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     opacity: 0.8,
     textAlign: "center",
+    fontWeight: "bold",
   },
   icon2: {
     backgroundColor: "transparent",

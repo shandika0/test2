@@ -341,3 +341,29 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
 });
+
+{
+  /* <View style={{ backgroundColor: 'white', height: 120 }}>
+  <View style={{ flexDirection: 'row', marginTop: 10 }}>
+    <Text style={{ color: '#4A92E6', marginLeft: 20, fontSize: 19 }}>
+      {gender}
+    </Text>
+    <Text style={{ color: 'gray', marginLeft: 10 }}>
+      {'\u2022'}
+    </Text>
+    <Text style={{ color: '#ec7e2f', marginLeft: 10, fontSize: 18 }}>
+      12 Kamar
+            </Text>
+  </View>
+  <View style={{ flexDirection: 'row', marginTop: 5 }}>
+    <Text style={{ color: 'black', marginLeft: 20, fontSize: 21 }}>
+      Kos Kakek Legend
+    </Text>
+  </View>
+  <View style={{ flexDirection: 'row', marginTop: 5 }}>
+    <Text style={{ color: 'black', marginLeft: 20, fontSize: 21 }}>
+      Jakarta
+    </Text>
+  </View>
+</View> */
+}

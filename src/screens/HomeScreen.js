@@ -29,6 +29,7 @@ class HomeScreen extends Component {
       });
     });
   };
+
   render() {
     return (
       <>
